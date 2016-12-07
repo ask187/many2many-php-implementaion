@@ -45,7 +45,7 @@ else
   	else
   	{
   		echo '<table class="table table-bordered table-hover table-responsive">
-    	<tr><th>SNO</th><th>Movie Name</th><th>Actor Name</th></tr>';
+    	<tr><th>SNO</th><th>Movie Name</th><th>Actor Name</th><th>Functions</th</tr>';
 		if(mysql_num_rows($results)>0)
 		{	
    
@@ -56,12 +56,16 @@ else
    				$aname=$row['aname'];
    				
 
-   				echo"<tr><td>$id</td>
-   				<td>$mname</td>
-   				<td>$aname</td>
-   				</tr>";
-			}
+   				echo"<form action=\"function.php\" method=\"POST\"><tr>
+   				<td><input type=\"hidden\" name='mid'value=\"$id\">$id</input></td>
+   				<td><input type=\"hidden\" name='mname' value=\"$mname\">$mname</input></td>
+   				<td><input type=\"hidden\" name='aname[]' value=\"$aname\">$aname</input></td>
+   				<td><button type=\"submit\" value=\"delete\" name=\"btn\" class=\"btn-danger btn-sm\"> Delete This Movie</button>
+   				<button type=\"submit\" value=\"edit\" name=\"btn\"  class=\"btn-warning btn-sm\"> Edit This Row</button></td>
+   				</tr></form>";
+   			}
 		}
+		echo"</table>";
 	}
 	echo'</div>';
 }
